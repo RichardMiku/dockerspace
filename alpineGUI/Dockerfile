@@ -4,6 +4,9 @@ FROM alpine:latest
 # 设置环境变量
 ENV LANG=C.UTF-8
 
+# 添加额外的仓库
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
 # 安装Xfce桌面环境及相关依赖
 RUN apk add --no-cache \
     xfce4-terminal \
