@@ -3,7 +3,7 @@ name: Build and Push Docker Image to ACR
 on:
   push:
     branches:
-      - main  # 设置为你的默认分支
+      - master  # 设置为你的默认分支
 
 jobs:
   build-and-push:
