@@ -1,0 +1,5 @@
+{
+  "dockerfilePath": "./copy/Dockerfile",
+  "buildContext": "./copy",
+  "tagName": "centos7"
+}
