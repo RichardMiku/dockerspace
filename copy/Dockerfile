@@ -1,4 +1,4 @@
-# 使用官方CentOS 7镜像作为基础镜像
+# 选择基础镜像基础镜像
 FROM centos:7
 
 # 构建镜像时执行echo命令输出"Hello World"
