@@ -1,39 +1,20 @@
-# 使用官方Ubuntu基础镜像
-FROM ubuntu:20.04
+# 使用官方Alpine基础镜像
+FROM alpine:latest
 
-# 设置环境变量，防止提示交互
+# 设置环境变量
 ENV DEBIAN_FRONTEND=noninteractive
 ENV WINEPREFIX=/root/.wine
 ENV WINESERVER=/usr/bin/wineserver
 ENV WINEDEBUG=-all
 
 # 安装wget和其他依赖
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
     wget \
-    software-properties-common \
-    gnupg \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# 添加wine官方仓库
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    wget -qO - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/winehq-archive.gpg > /dev/null && \
-    apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' && \
-    apt-get update
-
-# 安装wine及相关依赖
-RUN apt-get install -y --no-install-recommends \
-    winehq-stable \
-    xvfb \
-    x11vnc \
+    musl-locales \
     openbox \
-    supervisor \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    python3 \
+    py3-pip \
+    && pip3 install Flask pytz
 
 # 安装noVNC以提供Web访问
 RUN mkdir -p /root/noVNC && \
