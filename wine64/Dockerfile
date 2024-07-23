@@ -12,6 +12,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     wget \
     software-properties-common \
+    gnupg \
     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -19,7 +20,7 @@ RUN apt-get update && \
 # 添加wine官方仓库
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
+    wget -qO - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/winehq-archive.gpg > /dev/null && \
     apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' && \
     apt-get update
 
