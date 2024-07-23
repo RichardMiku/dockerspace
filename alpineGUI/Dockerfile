@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     xfwm4 \
     xfdesktop \
     thunar \
-    gtk+3 \
+    gtk+3.0 \
     gdk-pixbuf \
     libpng \
     libxml2 \
