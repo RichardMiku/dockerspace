@@ -1,5 +1,5 @@
 # 使用官方Ubuntu基础镜像
-FROM ubuntu-desktop
+FROM ubuntu-desktop:latest
 
 # 设置环境变量，防止提示交互
 ENV DEBIAN_FRONTEND=noninteractive
