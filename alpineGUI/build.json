@@ -1,0 +1,6 @@
+{
+    "dockerfilePath": "./alpineGUI/Dockerfile",
+    "buildContext": "./alpineGUI",
+    "tagName": "alpinegui"
+  }
+  
