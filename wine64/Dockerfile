@@ -4,6 +4,15 @@ FROM ubuntu:20.04
 # 设置环境变量，防止提示交互
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 添加wine官方仓库
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    software-properties-common && \
+    wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
+    apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' && \
+    apt-get update
+
 # 安装wine及相关依赖
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
