@@ -3,20 +3,28 @@ FROM ubuntu:20.04
 
 # 设置环境变量，防止提示交互
 ENV DEBIAN_FRONTEND=noninteractive
+ENV WINEPREFIX=/root/.wine
+ENV WINESERVER=/usr/bin/wineserver
+ENV WINEDEBUG=-all
+
+# 安装wget和其他依赖
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    software-properties-common \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # 添加wine官方仓库
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends \
-    software-properties-common && \
     wget -qO - https://dl.winehq.org/wine-builds/winehq.key | apt-key add - && \
     apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' && \
     apt-get update
 
 # 安装wine及相关依赖
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
     winehq-stable \
     xvfb \
     x11vnc \
@@ -27,21 +35,13 @@ RUN dpkg --add-architecture i386 && \
     rm -rf /var/lib/apt/lists/*
 
 # 安装noVNC以提供Web访问
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    python3-pip \
-    && \
-    pip3 install Flask pytz && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    # 下载noVNC
-    mkdir -p /root/noVNC && \
+RUN mkdir -p /root/noVNC && \
     cd /root/noVNC && \
-    curl -sL https://github.com/novnc/noVNC/archive/v1.2.0.tar.gz | tar xz --strip 1 && \
-    curl -sL https://github.com/novnc/websockify/archive/v0.10.0.tar.gz | tar xz --strip 1 && \
+    wget -qO- https://github.com/novnc/noVNC/archive/v1.2.0.tar.gz | tar xz --strip 1 && \
+    wget -qO- https://github.com/novnc/websockify/archive/v0.10.0.tar.gz | tar xz --strip 1 && \
     cd /root
 
-# 配置Xvfb
+# 配置Supervisor
 RUN mkdir -p /etc/supervisor/conf.d/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
