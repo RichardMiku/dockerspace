@@ -1,6 +1,6 @@
 {
-    "dockerfilePath": "./win64/Dockerfile",
-    "buildContext": "./win64",
+    "dockerfilePath": "/win64/Dockerfile",
+    "buildContext": "/win64",
     "tagName": "wine64"
   }
   
