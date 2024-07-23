@@ -1,0 +1,37 @@
+name: Build and Push Docker Image to ACR
+
+on:
+  push:
+    branches:
+      - master  # 设置为你的默认分支
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Read build.json
+      run: |
+        echo "DOCKERFILE_PATH=$(jq -r '.dockerfilePath' build.json)" >>$GITHUB_ENV
+        echo "BUILD_CONTEXT=$(jq -r '.buildContext' build.json)" >>$GITHUB_ENV
+        echo "TAG_NAME=$(jq -r '.tagName' build.json)" >>$GITHUB_ENV
+      shell: bash
+
+    - name: Build Docker Image
+      run: |
+        docker build -t ${{ env.ACR_REGISTRY }}/dspace:${{ env.TAG_NAME }} -f ${{ env.DOCKERFILE_PATH }}${{ env.BUILD_CONTEXT }}
+      shell: bash
+
+    - name: Log in to ACR
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+        registry: ${{ secrets.ACR_REGISTRY }}
+
+    - name: Push Docker Image to ACR
+      run: |
+        docker push ${{ secrets.ACR_REGISTRY }}/dspace:${{ env.TAG_NAME }}
+      shell: bash
