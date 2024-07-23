@@ -1,0 +1,5 @@
+{
+  "dockerfilePath": "./ubGUI/Dockerfile",
+  "buildContext": "./ubGUI",
+  "tagName": "ubgui"
+}

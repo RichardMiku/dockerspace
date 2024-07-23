@@ -12,22 +12,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Read WORKDIR.json
-      id: read-workdir
-      run: |
-        echo "BUILD_FOLDER=$(jq -r '.buildFolder' WORKDIR.json)" >>$GITHUB_ENV
-      shell: bash
-
     - name: Read build.json
       run: |
-        echo "DOCKERFILE_PATH=$(jq -r '.dockerfilePath'${{ env.BUILD_FOLDER }}/build.json)" >>$GITHUB_ENV
-        echo "BUILD_CONTEXT=$GITHUB_WORKSPACE/${{ env.BUILD_FOLDER }}$(jq -r '.buildContext'${{ env.BUILD_FOLDER }}/build.json)" >>$GITHUB_ENV
-        echo "TAG_NAME=$(jq -r '.tagName'${{ env.BUILD_FOLDER }}/build.json)" >>$GITHUB_ENV
+        echo "DOCKERFILE_PATH=$(jq -r '.dockerfilePath' build.json)" >>$GITHUB_ENV
+        echo "BUILD_CONTEXT=$(jq -r '.buildContext' build.json)" >>$GITHUB_ENV
+        echo "TAG_NAME=$(jq -r '.tagName' build.json)" >>$GITHUB_ENV
       shell: bash
 
     - name: Build Docker Image
       run: |
-        docker build -t ${{ secrets.ACR_REGISTRY }}/dspace:${{ env.TAG_NAME }} -f ${{ env.DOCKERFILE_PATH }}${{ env.BUILD_CONTEXT }}
+        docker build -t ${{ secrets.ACR_REGISTRY }}/dspace:${{ env.TAG_NAME }} -f ${{ env.DOCKERFILE_PATH }} ${{ env.BUILD_CONTEXT }}
       shell: bash
 
     - name: Log in to ACR
