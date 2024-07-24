@@ -1,5 +1,5 @@
 {
-  "dockerfilePath": "./frp/Dockerfile",
-  "buildContext": "./frp",
-  "tagName": "cache"
+  "dockerfilePath": "./copy/Dockerfile",
+  "buildContext": "./copy",
+  "tagName": "windows"
 }

@@ -1,5 +1,5 @@
 {
-  "dockerfilePath": "./ubGUI/Dockerfile",
-  "buildContext": "./ubGUI",
-  "tagName": "ubgui"
+  "dockerfilePath": "./frp/Dockerfile",
+  "buildContext": "./frp",
+  "tagName": "cache"
 }
