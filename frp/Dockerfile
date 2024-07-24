@@ -28,6 +28,8 @@ COPY frpc.ini /etc/frp/
 # 暴露frp服务端口
 EXPOSE 7000
 EXPOSE 7500
+EXPOSE 6000
+EXPOSE 6005
 
 # 设置启动脚本
 COPY entrypoint.sh /entrypoint.sh
