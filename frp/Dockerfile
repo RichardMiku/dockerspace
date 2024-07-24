@@ -1,4 +1,4 @@
-FROM centos:7
+FROM ubuntu:20.04
 
 # 设置维护者信息
 LABEL maintainer="your_email@example.com"
@@ -8,7 +8,7 @@ ENV FRP_VERSION=0.44.0
 ENV FRP_ARCH=amd64
 
 # 安装wget和screen
-RUN yum install -y wget screen
+RUN apt-get update && apt-get install -y wget screen && rm -rf /var/lib/apt/lists/*
 
 # 下载frp二进制文件
 RUN wget https://github.com/fatedier/frp/releases/download/v${FRP_VERSION}/frp_${FRP_VERSION}_linux_${FRP_ARCH}.tar.gz
