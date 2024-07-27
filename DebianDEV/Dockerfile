@@ -1,31 +1,20 @@
-# 使用 Debian 的稳定版本作为基础镜像
-FROM debian:stable
+# 使用 Alpine 的最新版本作为基础镜像
+FROM python:3-alpine
 
 # 设置作者信息
 LABEL maintainer="richardmiku@vip.qq.com"
 
-# 更新 apt 包管理器并安装必要的软件包
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        python3 \
-        python3-pip \
-        python3-venv \
-        git \
-        ca-certificates \
-        vim && \
-    rm -rf /var/lib/apt/lists/*
+# 安装必要的软件包
+RUN apk add --no-cache \
+    git \
+    vim \
+    pyinstaller
 
 # 配置 pip 使用阿里云的 Python 包索引服务
-RUN python3 -m pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
+RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 # 设置工作目录
 WORKDIR /app
-
-# 创建虚拟环境
-RUN python3 -m venv /app/venv
-
-# 激活虚拟环境
-ENV PATH="/app/venv/bin:$PATH"
 
 # 将本地代码复制到容器中
 COPY . /app
@@ -35,14 +24,11 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # 安装项目依赖
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-# 安装 PyInstaller
-RUN pip3 install pyinstaller
+RUN pip install --no-cache-dir -r requirements.txt
 
 # 打包 Python 脚本为可执行文件
-# RUN pyinstaller --onefile your_main_script.py
+RUN pyinstaller --onefile push.py
 
 # 指定容器启动时执行的命令
-ENTRYPOINT ["/bin/bash"]
-CMD ["-c", "bash --norc -i"]
+ENTRYPOINT ["/bin/sh"]
+CMD ["-c", "sh --norc -i"]
