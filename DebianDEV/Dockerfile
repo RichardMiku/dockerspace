@@ -11,7 +11,8 @@ RUN apt-get update && \
         python3-pip \
         python3-venv \
         git \
-        ca-certificates && \
+        ca-certificates \
+        vim && \
     rm -rf /var/lib/apt/lists/*
 
 # 配置 pip 使用阿里云的 Python 包索引服务
