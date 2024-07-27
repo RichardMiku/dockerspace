@@ -32,5 +32,4 @@ RUN pip install --no-cache-dir pyinstaller
 # RUN pyinstaller --onefile your_main_script.py
 
 # 指定容器启动时执行的命令
-ENTRYPOINT ["/bin/sh"]
-CMD ["-c", "sh --norc -i"]
+CMD ["/bin/sh", "-c", "tail -f /dev/null"]
