@@ -1,5 +1,5 @@
 {
-  "dockerfilePath": "./frp/Dockerfile",
-  "buildContext": "./frp",
-  "tagName": "cache"
+  "dockerfilePath": "./DebianDEV/Dockerfile",
+  "buildContext": "./DebianDEV",
+  "tagName": "DDEV"
 }

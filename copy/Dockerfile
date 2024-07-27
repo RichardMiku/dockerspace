@@ -1,5 +1,5 @@
 # 选择基础镜像基础镜像
-FROM dockurr/windows
+FROM scratch
 
 # 构建镜像时执行echo命令输出"Hello World"
 

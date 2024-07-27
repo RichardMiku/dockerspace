@@ -1,0 +1,7 @@
+docker pull coolq/wine-coolq
+mkdir coolq && cd coolq
+
+
+docker run -d --name bitc --rm --network=host -e VNC_PASSWD=12345678 -v `pwd`:/home/user/coolq registry.ap-southeast-1.aliyuncs.com/ricxx/coolq-wine
+
+docker run -d --name frp -p 7000:7000 -p 7500:7500 -p 6000:6000 -p 6005:6005 registry.cn-hangzhou.aliyuncs.com/ricxx/dspace:cache

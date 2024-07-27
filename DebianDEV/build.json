@@ -1,0 +1,6 @@
+{
+    "dockerfilePath": "./DebianDEV/Dockerfile",
+    "buildContext": "./DebianDEV",
+    "tagName": "DDEV"
+  }
+  
