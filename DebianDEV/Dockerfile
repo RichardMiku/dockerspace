@@ -37,5 +37,12 @@ ENV PYTHONUNBUFFERED 1
 # 安装项目依赖
 RUN pip3 install --no-cache-dir -r requirements.txt
 
+# 安装 PyInstaller
+RUN pip3 install pyinstaller
+
+# 打包 Python 脚本为可执行文件
+# RUN pyinstaller --onefile your_main_script.py
+
 # 指定容器启动时执行的命令
-CMD ["/bin/bash", "-c", "tail -f /dev/null"]
+ENTRYPOINT ["/bin/bash"]
+CMD ["-c", "bash --norc -i"]
