@@ -7,7 +7,8 @@ LABEL maintainer="richardmiku@vip.qq.com"
 # 安装必要的软件包
 RUN apk add --no-cache \
     git \
-    vim
+    vim \
+    binutils # 添加 binutils 的安装
 
 # 配置 pip 使用阿里云的 Python 包索引服务
 RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
