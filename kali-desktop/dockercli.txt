@@ -1,0 +1,1 @@
+docker run -it --privileged --name kali-desktop -p 5901:5901 -p 6080:6080 --rm -e DISPLAY=host.docker.internal:0.0 kali

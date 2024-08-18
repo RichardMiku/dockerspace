@@ -1,0 +1,11 @@
+[Unit]
+Description=TightVNC remote desktop server
+After=network.target  
+ 
+[Service]
+Type=forking			
+User=root
+ExecStart=/usr/bin/vncserver :1 -rfbport 5901 -localhost no
+
+[Install]
+WantedBy=multi-user.target
