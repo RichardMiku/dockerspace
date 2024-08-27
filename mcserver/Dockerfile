@@ -13,7 +13,7 @@ RUN mkdir -p /root/mc
 
 # 下载FabricMC服务器端JAR文件并重命名
 RUN wget -P /root/mc https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.16.3/1.0.1/server/jar \
-    && mv /root/mc/fabric-server-mc.1.20.4-loader.0.16.3-launcher.1.0.1.jar /root/mc/fabric_server.jar
+    && mv /root/mc/jar /root/mc/fabric_server.jar
 
 # 设置工作目录
 WORKDIR /root/mc
