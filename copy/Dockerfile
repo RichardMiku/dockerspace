@@ -1,5 +1,5 @@
 # 选择基础镜像基础镜像
-FROM scratch
+FROM yankovg/python3.8.2-ubuntu18.04
 
 # 构建镜像时执行echo命令输出"Hello World"
 
