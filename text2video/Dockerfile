@@ -33,7 +33,7 @@ RUN pip install --upgrade pip && \
 # RUN mkdir -p models && \
 #     wget <权重文件URL> -P models/  # 替换为实际权重下载链接
 
-# 暴露端口（如果需要）
+# 暴露端口（如果需要）233
 EXPOSE 8080
 
 # 运行示例命令
