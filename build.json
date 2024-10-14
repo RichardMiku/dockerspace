@@ -1,5 +1,5 @@
 {
-  "dockerfilePath": "./mcserver/Dockerfile",
-  "buildContext": "./mcserver",
-  "tagName": "mcserver"
+  "dockerfilePath": "./text2video/Dockerfile",
+  "buildContext": "./text2video",
+  "tagName": "cache"
 }
