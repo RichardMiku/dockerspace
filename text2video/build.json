@@ -1,0 +1,6 @@
+{
+    "dockerfilePath": "./text2video/Dockerfile",
+    "buildContext": "./text2video",
+    "tagName": "cache"
+  }
+  
