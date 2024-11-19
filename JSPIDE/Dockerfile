@@ -24,6 +24,13 @@ RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.
 # 安装 code-server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
+# 安装 JSP 开发组件和调试工具
+RUN code-server --install-extension redhat.java \
+    && code-server --install-extension vscjava.vscode-java-debug \
+    && code-server --install-extension vscjava.vscode-java-dependency \
+    && code-server --install-extension vscjava.vscode-java-pack \
+    && code-server --install-extension Pivotal.vscode-boot-dev-pack
+
 # 暴露 Tomcat 和 code-server 端口
 EXPOSE 8080 8081
 
