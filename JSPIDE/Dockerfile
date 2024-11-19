@@ -7,7 +7,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 
 # 安装必要的包
 RUN apt-get update && apt-get install -y \
-    openjdk-11-jdk \
+    openjdk-12-jdk \
     wget \
     unzip \
     curl \
