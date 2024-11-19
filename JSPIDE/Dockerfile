@@ -7,7 +7,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 # 安装必要的包
 RUN apt-get update && apt-get install -y \
-    openjdk-23-jdk \
+    openjdk-17-jdk \
     wget \
     unzip \
     curl \
@@ -29,12 +29,3 @@ RUN code-server --install-extension redhat.java \
     && code-server --install-extension vscjava.vscode-java-debug \
     && code-server --install-extension vscjava.vscode-java-dependency \
     && code-server --install-extension vscjava.vscode-java-pack
-
-# 暴露 Tomcat 和 code-server 端口
-EXPOSE 8080 8081
-
-# 启动脚本，启动 Tomcat 和 code-server
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
-CMD ["/start.sh"]
