@@ -2,12 +2,12 @@
 FROM ubuntu:latest
 
 # 设置环境变量
-ENV CATALINA_HOME /usr/local/tomcat
-ENV PATH $CATALINA_HOME/bin:$PATH
+ENV JAVA_HOME /usr/local/openjdk
+ENV PATH $JAVA_HOME/bin:$PATH
 
 # 安装必要的包
 RUN apt-get update && apt-get install -y \
-    openjdk-12-jdk \
+    openjdk-23-jdk \
     wget \
     unzip \
     curl \
