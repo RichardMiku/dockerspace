@@ -29,7 +29,7 @@ RUN code-server --install-extension redhat.java \
     && code-server --install-extension vscjava.vscode-java-debug \
     && code-server --install-extension vscjava.vscode-java-dependency \
     && code-server --install-extension vscjava.vscode-java-pack \
-    && code-server --install-extension Pivotal.vscode-boot-dev-pack
+    && code-server --install-extension vmware.vscode-boot-dev-pack
 
 # 暴露 Tomcat 和 code-server 端口
 EXPOSE 8080 8081
