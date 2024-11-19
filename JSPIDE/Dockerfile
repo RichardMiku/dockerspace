@@ -16,10 +16,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 下载并安装 Tomcat
-RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz \
-    && tar xzf apache-tomcat-9.0.56.tar.gz \
-    && mv apache-tomcat-9.0.56 /usr/local/tomcat \
-    && rm apache-tomcat-9.0.56.tar.gz
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97.tar.gz \
+    && tar xzf apache-tomcat-9.0.97.tar.gz \
+    && mv apache-tomcat-9.0.97 /usr/local/tomcat \
+    && rm apache-tomcat-9.0.97.tar.gz
 
 # 安装 code-server
 RUN curl -fsSL https://code-server.dev/install.sh | sh
