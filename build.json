@@ -1,5 +1,5 @@
 {
-  "dockerfilePath": "./JSPIDE/Dockerfile",
-  "buildContext": "./JSPIDE",
+  "dockerfilePath": "./frp/Dockerfile",
+  "buildContext": "./frp",
   "tagName": "cache"
 }
